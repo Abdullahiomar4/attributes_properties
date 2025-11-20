@@ -1,33 +1,33 @@
+# lib/dog.py
+
+approved_breeds = ["Mastiff", "Chihuahua", "Corgi", "Shar Pei", 
+                   "Beagle", "French Bulldog", "Pug", "Pointer"]
+
 class Dog:
-    approved_breeds = [
-        "Mastiff", "Chihuahua", "Corgi", "Shar Pei", 
-        "Beagle", "French Bulldog", "Pug", "Pointer"
-    ]
+    def __init__(self, name="Unknown", breed="Beagle"):
+        self.name = name       # Use property, not _name
+        self.breed = breed     # Use property, not _breed
 
-    def __init__(self, name="Fido", breed="Pug"):
-        self.name = name
-        self.breed = breed
-
-    # name property
-    @property
-    def name(self):
+    # Name property
+    def get_name(self):
         return self._name
 
-    @name.setter
-    def name(self, new_value):
-        if isinstance(new_value, str) and 1 <= len(new_value) <= 25:
-            self._name = new_value.title()
+    def set_name(self, name):
+        if isinstance(name, str) and 1 <= len(name) <= 25:
+            self._name = name
         else:
-            print(f"Invalid name '{new_value}': Name must be a string between 1 and 25 characters.")
+            print("Name must be string between 1 and 25 characters.")
 
-    # breed property
-    @property
-    def breed(self):
+    name = property(get_name, set_name)
+
+    # Breed property
+    def get_breed(self):
         return self._breed
 
-    @breed.setter
-    def breed(self, new_value):
-        if new_value in self.approved_breeds:
-            self._breed = new_value
+    def set_breed(self, breed):
+        if breed in approved_breeds:
+            self._breed = breed
         else:
-            print(f"Invalid breed '{new_value}': Breed must be in list of approved breeds.")
+            print("Breed must be in list of approved breeds.")
+
+    breed = property(get_breed, set_breed)

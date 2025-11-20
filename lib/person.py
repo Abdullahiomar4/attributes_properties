@@ -1,34 +1,34 @@
+# lib/person.py
+
+approved_jobs = ["Admin", "Customer Service", "Human Resources", "ITC", 
+                 "Production", "Legal", "Finance", "Sales", "General Management", 
+                 "Research & Development", "Marketing", "Purchasing"]
+
 class Person:
-    approved_jobs = [
-        "Admin", "Customer Service", "Human Resources", "ITC", "Production", 
-        "Legal", "Finance", "Sales", "General Management", 
-        "Research & Development", "Marketing", "Purchasing"
-    ]
+    def __init__(self, name="Unknown", job="Admin"):
+        self.name = name   # Use property, not _name
+        self.job = job     # Use property, not _job
 
-    def __init__(self, name="John Doe", job="Sales"):
-        self.name = name
-        self.job = job
-
-    # name property
-    @property
-    def name(self):
+    # Name property
+    def get_name(self):
         return self._name
 
-    @name.setter
-    def name(self, new_value):
-        if isinstance(new_value, str) and 1 <= len(new_value) <= 25:
-            self._name = new_value.title()
+    def set_name(self, name):
+        if isinstance(name, str) and 1 <= len(name) <= 25:
+            self._name = name.title()  # Convert to title case
         else:
-            print(f"Invalid name '{new_value}': Name must be a string between 1 and 25 characters.")
+            print("Name must be string between 1 and 25 characters.")
 
-    # job property
-    @property
-    def job(self):
+    name = property(get_name, set_name)
+
+    # Job property
+    def get_job(self):
         return self._job
 
-    @job.setter
-    def job(self, new_value):
-        if new_value in self.approved_jobs:
-            self._job = new_value
+    def set_job(self, job):
+        if job in approved_jobs:
+            self._job = job
         else:
-            print(f"Invalid job '{new_value}': Job must be in list of approved jobs.")
+            print("Job must be in list of approved jobs.")
+
+    job = property(get_job, set_job)

@@ -4,30 +4,30 @@ class Dog:
         "Beagle", "French Bulldog", "Pug", "Pointer"
     ]
 
-    def __init__(self, dog_name="Fido", dog_breed="Pug"):
-        self.dog_name = dog_name
-        self.dog_breed = dog_breed
+    def __init__(self, name="Fido", breed="Pug"):
+        self.name = name
+        self.breed = breed
 
-    # dog_name property
+    # name property
     @property
-    def dog_name(self):
-        return self._dog_name
+    def name(self):
+        return self._name
 
-    @dog_name.setter
-    def dog_name(self, new_value):
+    @name.setter
+    def name(self, new_value):
         if isinstance(new_value, str) and 1 <= len(new_value) <= 25:
-            self._dog_name = new_value.title()
+            self._name = new_value.title()
         else:
             print(f"Invalid name '{new_value}': Name must be a string between 1 and 25 characters.")
 
-    # dog_breed property
+    # breed property
     @property
-    def dog_breed(self):
-        return self._dog_breed
+    def breed(self):
+        return self._breed
 
-    @dog_breed.setter
-    def dog_breed(self, new_value):
+    @breed.setter
+    def breed(self, new_value):
         if new_value in self.approved_breeds:
-            self._dog_breed = new_value
+            self._breed = new_value
         else:
             print(f"Invalid breed '{new_value}': Breed must be in list of approved breeds.")
